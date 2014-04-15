@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(app, controllers) {
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
+  app.get('/', controllers.pageController.index);
 
-module.exports = router;
+  app.get('/accounts', controllers.accountController.index);
+
+}
