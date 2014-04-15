@@ -28,6 +28,13 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true
                 }
+            },
+            sass: {
+                files: ['public/sass/**'],
+                tasks: ['sass'],
+                options: {
+                    livereload: true
+                }
             }
         },
         jshint: {
@@ -98,6 +105,21 @@ module.exports = function(grunt) {
             unit: {
                 configFile: 'test/karma/karma.conf.js'
             }
+        },
+        sass: {
+            dist: {
+                  options: {
+                    style: 'compressed'
+                  },
+                files: [{
+                    expand: true,
+                    cwd: __dirname,
+                    src: ['public/sass/*.scss'],
+                    dest: 'public/css/',
+                    ext: '.css',
+                    flatten: true
+                }]
+            }
         }
     });
 
@@ -117,5 +139,5 @@ module.exports = function(grunt) {
     //Test task.
     //grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
 
-    grunt.registerTask('default', ['jshint', 'csslint', 'concurrent']);
+    grunt.registerTask('default', ['sass', 'jshint', 'csslint', 'concurrent']);
 };
