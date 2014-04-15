@@ -8,20 +8,20 @@ var mongoose = require('mongoose');
 var app = express();
 
 // models
-var AccountModel = require('./models/account');
+var AccountModel = require('./app/models/account');
 var models = {
   'accountModel': new AccountModel(mongoose)
 }
 
 // controllers
-var AccountController = require('./controllers/account');
-var PageController = require('./controllers/page');
+var AccountController = require('./app/controllers/account');
+var PageController = require('./app/controllers/page');
 var controllers = {
   'accountController': new AccountController(models.accountModel),
   'pageController': new PageController(models.accountModel)
 }
 
-var routes = require('./routes/index')(app, controllers);
+var routes = require('./app/routes/index')(app, controllers);
 
 app.set('dbUrl', 'mongodb://localhost/pdm');
 
@@ -34,7 +34,7 @@ mongoose.connect(app.get('dbUrl'), function onMongooseError(err){
 });
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/app/views'));
 app.set('view engine', 'jade');
 
 app.use(favicon());
