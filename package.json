@@ -14,5 +14,24 @@
     "debug": "~0.7.4",
     "jade": "~1.3.0",
     "mongoose": "~3.8.8"
+  },
+  "devDependencies": {
+    "assetmanager": "^0.1.1",
+    "grunt-concurrent": "latest",
+    "grunt-contrib-csslint": "^0.2.0",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "latest",
+    "grunt-env": "^0.4.1",
+    "grunt-karma": "^0.6.2",
+    "grunt-mocha-test": "latest",
+    "grunt-nodemon": "0.2.0",
+    "karma": "^0.10.4",
+    "karma-coverage": "^0.1.0",
+    "load-grunt-tasks": "^0.4.0",
+    "should": "2.1.1",
+    "supertest": "0.8.2",
+    "time-grunt": "^0.3.1"
   }
 }

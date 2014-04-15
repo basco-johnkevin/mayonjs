@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (mongoose) {
 
   var AccountSchema = new mongoose.Schema({
@@ -13,6 +15,6 @@ module.exports = function (mongoose) {
 
   self.get = function (callback) {
     console.log('implement');
-  }
+  };
 
-}
+};

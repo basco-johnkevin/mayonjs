@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -11,7 +13,7 @@ var app = express();
 var AccountModel = require('./app/models/account');
 var models = {
   'accountModel': new AccountModel(mongoose)
-}
+};
 
 // controllers
 var AccountController = require('./app/controllers/account');
@@ -19,9 +21,9 @@ var PageController = require('./app/controllers/page');
 var controllers = {
   'accountController': new AccountController(models.accountModel),
   'pageController': new PageController(models.accountModel)
-}
+};
 
-var routes = require('./app/routes/index')(app, controllers);
+require('./app/routes/index')(app, controllers);
 
 app.set('dbUrl', 'mongodb://localhost/pdm');
 
@@ -56,7 +58,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+  app.use(function(err, req, res) {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -67,7 +69,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
@@ -76,4 +78,18 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+//module.exports = app;
+
+
+// NOTE: code below was extracted from ./bin/www
+var debug = require('debug')('my-application');
+// var app = require('../app');
+
+app.set('port', process.env.PORT || 3000);
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
+
+// Expose app
+exports = module.exports = app;
